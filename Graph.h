@@ -5,12 +5,15 @@
 
 using namespace std;
 
-
 struct vertex;
 
 struct adjVertex{
     vertex *v;
     int weight;
+    adjVertex(vertex *x, int wght){
+        v = x;
+        weight = wght;
+    }
 };
 
 struct vertex{
@@ -21,7 +24,6 @@ struct vertex{
     double latitude = 0;
     double longitude = 0;
     vertex *parent = nullptr;
-    vertex(){};
 };
 
 class Graph
@@ -31,7 +33,7 @@ class Graph
         ~Graph();
         void addEdge(std::string v1, std::string v2, int weight);
         void addVertex(std::string name, double latitude, double longitude);
-        void addVertex(vertex v);
+        void addVertexObject(vertex v);
         void displayEdges();
         int distanceBetweenWords(std::string word1, std::string word2);
         void assignDistance(string s);

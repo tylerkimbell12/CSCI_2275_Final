@@ -15,24 +15,19 @@ Graph::~Graph()
 {
 }
 void Graph::addEdge(string v1, string v2, int weight){
-
-    for(int i = 0; i < vertices.size(); i++){
-        if(vertices[i].name == v1){
-            for(int j = 0; j < vertices.size(); j++){
-                if(vertices[j].name == v2 && i != j){
-                    adjVertex av;
-                    av.v = &vertices[j];
-                    av.weight = weight;
-                    vertices[i].adj.push_back(av);
-                    //another vertex for edge in other direction
-                    adjVertex av2;
-                    av2.v = &vertices[i];
-                    av2.weight = weight;
-                    vertices[j].adj.push_back(av2);
-                }
-            }
+    vertex *startNode = search(v1);
+    vertex *endNode = search(v2);
+    //Check for duplicate edges
+    for(int i = 0; i < startNode->adj.size(); i++){
+        if(startNode->adj[i].v == endNode){
+            return;
         }
     }
+    //Add Edge
+    adjVertex start(startNode, weight);
+    adjVertex end(endNode, weight);
+    startNode->adj.push_back(end);
+    endNode->adj.push_back(start);
 }
 void Graph::addVertex(string n, double latitude, double longitude){ 
     bool found = false;
@@ -54,7 +49,7 @@ void Graph::addVertex(string n, double latitude, double longitude){
     }
 }
 
-void Graph::addVertex(vertex v){ //Second addVertex function when we just want to pass a vertex
+void Graph::addVertexObject(vertex v){ //Second addVertex function when we just want to pass a vertex
     if(search(v.name)){
         cout << "Already in Graph" << endl;
         return;

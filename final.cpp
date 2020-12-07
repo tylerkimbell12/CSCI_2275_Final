@@ -15,15 +15,17 @@ int main(int argc, char *argv[]){
     string currentline;
     regex replaceCommas(",");
     regex getRidOfSpaces("\\s{2,}");
+    getline(inStream, currentline);
     while(getline(inStream, currentline)){
         currentline = regex_replace(currentline, replaceCommas, " ");
         currentline = regex_replace(currentline, getRidOfSpaces, "");
+        cout << currentline << endl;
         stringstream ss(currentline);
         vertex addToGraph;
         ss >> addToGraph.name;
         ss >> addToGraph.latitude;
         ss >> addToGraph.longitude;
-        mygwaf.addVertex(addToGraph);
+        mygwaf.addVertexObject(addToGraph);
         while(ss.good()){
             string connectedNodeName;
             int weight;
