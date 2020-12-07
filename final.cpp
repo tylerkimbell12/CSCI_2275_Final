@@ -2,12 +2,39 @@
 #include <fstream>
 #include "Stack.h"
 #include "Graph.h"
+#include <regex>
+#include <sstream>
 
 using namespace std;
 
 int main(int argc, char *argv[]){
     Graph mygwaf;
     Stack locationStack;
+//Beginning of File Input
+    ifstream inStream(argv[1]);
+    string currentline;
+    regex replaceCommas(",");
+    regex getRidOfSpaces("\\s{2,}");
+    while(getline(inStream, currentline)){
+        currentline = regex_replace(currentline, replaceCommas, " ");
+        currentline = regex_replace(currentline, getRidOfSpaces, "");
+        stringstream ss(currentline);
+        vertex addToGraph;
+        ss >> addToGraph.name;
+        ss >> addToGraph.latitude;
+        ss >> addToGraph.longitude;
+        mygwaf.addVertex(addToGraph);
+        while(ss.good()){
+            string connectedNodeName;
+            int weight;
+            ss >> connectedNodeName;
+            ss >> weight;
+            mygwaf.addVertex(connectedNodeName, 0, 0);
+            mygwaf.addEdge(addToGraph.name, connectedNodeName, weight);
+        }
+    }
+    mygwaf.displayEdges();
+//End of File Input
     string startingLocation;
     std::string mainMenu = 
         "======Main Menu=====\n"
@@ -60,36 +87,37 @@ int main(int argc, char *argv[]){
                 getline(cin, location);
                 //TODO
                 //find shortest distance to new location and build a stack of nodes to it
-                while(!locationStack.isEmpty()){
-                    //TODO
-                    //Step through locations giving directions
+                    while(!locationStack.isEmpty()){
+                        //TODO
+                        //Step through locations giving directions
+                    }
                 }
+                case 3:
+                {
+                    //TODO
+                    //implement configurations (mph, descrpitions of buldings, ect.)
+                }
+                case 4:
+                {
+                    //TODO
+                    //maybe add feature to add locations
+                }
+                case 5:
+                {
+                    cout << "Exiting..." << endl;
+                    return 0;
+                }
+                default:
+                {
+                    cout << "Enter Valid Input" << endl;
+                }
+            
+            if (exit) {
+                break;
             }
-            case 3:
-            {
-                //TODO
-                //implement configurations (mph, descrpitions of buldings, ect.)
-            }
-            case 4:
-            {
-                //TODO
-                //maybe add feature to add locations
-            }
-            case 5:
-            {
-                cout << "Exiting..." << endl;
-                return 0;
-            }
-            default:
-            {
-                cout << "Enter Valid Input" << endl;
-            }
-        
-        if (exit) {
-            break;
+            
+            cout << mainMenu << endl;
         }
-        
-        cout << mainMenu << endl;
     }
     return 0;
 }

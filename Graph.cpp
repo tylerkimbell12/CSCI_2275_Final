@@ -34,12 +34,16 @@ void Graph::addEdge(string v1, string v2, int weight){
         }
     }
 }
-void Graph::addVertex(string n){
+void Graph::addVertex(string n, double latitude, double longitude){ 
     bool found = false;
     for(int i = 0; i < vertices.size(); i++){
         if(vertices[i].name == n){
             found = true;
             cout<<vertices[i].name<<" found."<<endl;
+            if(vertices[i].latitude == 0){ //Check to see if the added node also contains location data, if it doesn't, add it
+                vertices[i].latitude = latitude;
+                vertices[i].longitude = longitude;
+            }
         }
     }
     if(found == false){
@@ -50,12 +54,20 @@ void Graph::addVertex(string n){
     }
 }
 
+void Graph::addVertex(vertex v){ //Second addVertex function when we just want to pass a vertex
+    if(search(v.name)){
+        cout << "Already in Graph" << endl;
+        return;
+    }
+    vertices.push_back(v);
+}
+
 void Graph::displayEdges()
 {
     for(int i = 0; i < vertices.size(); i++){
-        cout<<vertices[i].name<<"-->";
+        cout<<"[" << vertices[i].name<<"]" << "-->";
         for(int j = 0; j < vertices[i].adj.size(); j++){
-            cout<<vertices[i].adj[j].v->name;
+            cout<<"[" << vertices[i].adj[j].v->name << " " << vertices[i].adj[j].weight <<"]";
             if (j != vertices[i].adj.size()-1)
                 cout<<"***";
         }
