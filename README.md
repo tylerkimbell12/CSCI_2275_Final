@@ -27,6 +27,7 @@ Other interesting potential features:
   
   
 ----------------------------------------
-Known Bugs
+Known Bugs:
+
   #Graph builds in C++ 9.8 but not C++ 11 (Most important bug as of this moment)
 
