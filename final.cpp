@@ -15,6 +15,7 @@ int main(int argc, char *argv[]){
     string currentline;
     regex replaceCommas(",");
     regex getRidOfSpaces("\\s{2,}");
+    getline(inStream, currentline);
     while(getline(inStream, currentline)){
         currentline = regex_replace(currentline, replaceCommas, " ");
         currentline = regex_replace(currentline, getRidOfSpaces, "");

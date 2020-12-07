@@ -9,8 +9,8 @@ using namespace std;
 struct vertex;
 
 struct adjVertex{
-    vertex *v;
-    int weight;
+    vertex *v = NULL;
+    int weight = 0;
 };
 
 struct vertex{
