@@ -8,14 +8,12 @@ using namespace std;
 struct vertex;
 
 struct adjVertex{
-    vertex *v;
-    int weight;
+    vertex *v = NULL;
+    int weight = 0;
     adjVertex(vertex *x, int wght){
         v = x;
         weight = wght;
     }
-    vertex *v = NULL;
-    int weight = 0;
 };
 
 struct vertex{
@@ -25,7 +23,6 @@ struct vertex{
     int distance = 0;
     double latitude = 0;
     double longitude = 0;
-    vertex *parent = nullptr;
     vertex *parent = NULL;
     vertex(){};
 };

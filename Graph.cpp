@@ -7,14 +7,10 @@
 
 using namespace std;
 
-Graph::Graph()
-{
-    
-}
+Graph::Graph(){}
 
-Graph::~Graph()
-{
-}
+Graph::~Graph(){}
+
 void Graph::addEdge(string v1, string v2, int weight){
     vertex *startNode = search(v1);
     vertex *endNode = search(v2);
@@ -29,28 +25,7 @@ void Graph::addEdge(string v1, string v2, int weight){
     adjVertex end(endNode, weight);
     startNode->adj.push_back(end);
     endNode->adj.push_back(start);
-    cout << startNode->name << "," << endNode->name << endl;
-
-    for(int i = 0; i < vertices.size(); i++){
-        if(vertices[i].name == v1){
-            for(int j = 0; j < vertices.size(); j++){
-                if(vertices[j].name == v2){
-    cout << startNode->name << "," << endNode->name << endl;
-                    adjVertex av1(&vertices[j], weight);
-                    if(vertices[i].adj.empty())
-                    vertices[i].adj.push_back(av1);
-                }
-            }
-        }
-    }
-
-    // for(int j = 0; j < startNode->adj.size(); j++){
-    //         cout<<"[" << startNode->adj[j].v->name << " " << startNode->adj[j ].weight <<"]";
-    //         if (j != startNode->adj.size()-1)
-    //             cout<<"***";
-    // }
-    cout << endl;
-
+    
 }
 void Graph::addVertex(string n, double latitude, double longitude){ 
     bool found = false;
@@ -73,7 +48,7 @@ void Graph::addVertex(string n, double latitude, double longitude){
 
 void Graph::addVertexObject(vertex v){ //Second addVertex function when we just want to pass a vertex
     if(search(v.name)){
-        //cout << "Already in Graph" << endl;
+        //cout << "Already in Graph" << endl; //Print Statement for debugging
         return;
     }
     vertices.push_back(v);

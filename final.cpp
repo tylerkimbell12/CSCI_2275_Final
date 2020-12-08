@@ -10,34 +10,35 @@ using namespace std;
 int main(int argc, char *argv[]){
     Graph mygwaf;
     Stack locationStack;
-//Beginning of File Input
-    ifstream inStream(argv[1]);
+//Beginning of File Input | Vertex file must be first argument, edge file must be second.
+    ifstream inStreamVerticies(argv[1]);
+    ifstream inStreamEdges(argv[2]);
     string currentline;
     regex replaceCommas(",");
     regex getRidOfSpaces("\\s{2,}");
-    getline(inStream, currentline);
-    while(getline(inStream, currentline)){
+    //Vertex Input
+    while(getline(inStreamVerticies, currentline)){
+        currentline = regex_replace(currentline, replaceCommas, " ");
+        stringstream ss(currentline);
+        vertex toAdd;
+        ss >> toAdd.name;
+        ss >> toAdd.latitude;
+        ss >> toAdd.longitude;
+        mygwaf.addVertexObject(toAdd);
+    }
+    //Edges Input
+    while(getline(inStreamEdges, currentline)){
         currentline = regex_replace(currentline, replaceCommas, " ");
         currentline = regex_replace(currentline, getRidOfSpaces, "");
-        cout << currentline << endl;
-        stringstream ss(currentline);
-        vertex addToGraph;
-        ss >> addToGraph.name;
-        //cout << addToGraph.name << endl;
-        ss >> addToGraph.latitude;
-        //cout << addToGraph.latitude << endl;
-        ss >> addToGraph.longitude;
-        //cout << addToGraph.longitude << endl;
-
-        mygwaf.addVertexObject(addToGraph);
-        while(ss.good()){
-            string connectedNodeName;
+        stringstream ss2(currentline);
+        string baseNode;
+        ss2 >> baseNode;
+        while(ss2.good()){
+            string connectNode;
             int weight;
-            ss >> connectedNodeName;
-            //cout << connectedNodeName << endl;
-            ss >> weight;
-            mygwaf.addVertex(connectedNodeName, 0, 0);
-            mygwaf.addEdge(addToGraph.name, connectedNodeName, weight);
+            ss2 >> connectNode;
+            ss2 >> weight;
+            mygwaf.addEdge(baseNode, connectNode, weight);
         }
     }
     mygwaf.displayEdges();
