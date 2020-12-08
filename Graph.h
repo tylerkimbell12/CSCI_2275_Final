@@ -14,16 +14,20 @@ struct adjVertex{
         v = x;
         weight = wght;
     }
+    vertex *v = NULL;
+    int weight = 0;
 };
 
 struct vertex{
-    std::string name;
+    std::string name = "booga wooga";
     std::vector<adjVertex> adj;
     bool visited = false;
     int distance = 0;
     double latitude = 0;
     double longitude = 0;
     vertex *parent = nullptr;
+    vertex *parent = NULL;
+    vertex(){};
 };
 
 class Graph

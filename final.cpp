@@ -23,13 +23,18 @@ int main(int argc, char *argv[]){
         stringstream ss(currentline);
         vertex addToGraph;
         ss >> addToGraph.name;
+        //cout << addToGraph.name << endl;
         ss >> addToGraph.latitude;
+        //cout << addToGraph.latitude << endl;
         ss >> addToGraph.longitude;
+        //cout << addToGraph.longitude << endl;
+
         mygwaf.addVertexObject(addToGraph);
         while(ss.good()){
             string connectedNodeName;
             int weight;
             ss >> connectedNodeName;
+            //cout << connectedNodeName << endl;
             ss >> weight;
             mygwaf.addVertex(connectedNodeName, 0, 0);
             mygwaf.addEdge(addToGraph.name, connectedNodeName, weight);
@@ -48,13 +53,10 @@ int main(int argc, char *argv[]){
 
     std::string locationList= 
         "======Avalible Locations=====\n"
-        "Acedemic: C4C, UMC,  Engineering Building, Duane Physics, Math Building,\n"
-        "Fleming Building, Wolf Law Jila, Enviromental Design Building, Econ Building,\n"
-        "Hale Science, Leeds Buisness\n\n"
-        "Recreation: C4C, Fiske Planetarium, Rec Center, Farrand Feild, Kitt Feild, Old Main,\n"
-        "Folsom Feild \n\n"
-        "Residence Halls: Hallet, Engeneering Quad Andrews, Kitt Central, Farrand, Arnett, Baker,\n"
-        "Libby, Sewall, Kitt West, Smith \n";
+        "Acedemic: Engineering_Center, Duane_Physics, Math, Fleming, Wolf_Law,\n"
+        "Environmental_Design, Econ, Hale_Science, Leeds_Business\n"
+        "Recreation: C4C, UMC, Fiske_Planetarium, Rec_Center, Farrand_Field, Kitt_Field, Old_Main, Folsom_Field \n"
+        "Residence Halls: Hallett, Engineering_Quad, Kitt_Central, Farrand, Arnett, Baker, Andrews, Sewall\n";
 
     int choice;
     bool exit = false;
