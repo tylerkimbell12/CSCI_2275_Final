@@ -5,27 +5,30 @@ Our plan is to use a graph to model the CU campus, making notible locations node
 
 ----------------------------------------
 
-Our project will:
+How to Run:
 
-  #Have a modeled graph of the CU campus
-  
-  #Give step by step directions from loction to location untill the destination is reached
-  
-  #Create an optimal path to the destination based on the data we have
-	
-	
+Download the zip file from github, and extract the files into VScode.
+
+Compile with: g++ Graph.cpp Stack.cpp final.cpp Queue.cpp Nodes.h -std=c++11 -o final 
+
+Run with: ./final graphVertexes.csv graphdata.csv
 	
 ----------------------------------------
   
-Other interesting potential features:
+Dependencies:
 
-  #Give cardinal directions between loctions (North, East, South, West), as we could add x anf y courdinates to the nodes
+No third party libraries are required,  only the mingw compiler. 
   
-  #Give an eta based on mode of transportaion (walking, skateboarding, biking, ect.)
-  
-  #Give a description of the location, as a stored string in the node
-  
-  
+----------------------------------------
+System Requirements: 
+
+Tested on both macOS and Windows, althgouh some modification is needed to run on specific platforms, see known bugs. 
+
+----------------------------------------
+Team Members:
+
+Marc Roy, Tyler Kimbell
+
 ----------------------------------------
 Known Bugs:
 
