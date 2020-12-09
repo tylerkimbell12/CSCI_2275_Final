@@ -29,6 +29,7 @@ Other interesting potential features:
 ----------------------------------------
 Known Bugs:
 
-  #For MAC users, for the program to build properly, there must not be a comma at the end of line 19 in graphdata.csv after the 110
+  #For MAC users, for the program to build properly, there must not be a comma at the end of line 19 in graphdata.csv after the 110.
+  
   #For Windows users, for the program to build properly, there must be a comma at the end of line 19 in graphdata.csv after the 110.
 
