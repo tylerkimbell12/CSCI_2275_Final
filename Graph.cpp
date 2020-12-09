@@ -34,11 +34,6 @@ void Graph::addVertex(string n, double latitude, double longitude){
     for(int i = 0; i < vertices.size(); i++){
         if(vertices[i].name == n){
             found = true;
-            // //cout<<vertices[i].name<<" found."<<endl;
-            // if(vertices[i].latitude == 0){ //Check to see if the added node also contains location data, if it doesn't, add it
-            //     vertices[i].latitude = latitude;
-            //     vertices[i].longitude = longitude;
-            // }
         }
     }
     if(found == false){
@@ -59,14 +54,12 @@ bool Graph::vertexExists(string s){
 
 void Graph::addVertexObject(vertex v){ //Second addVertex function when we just want to pass a vertex
     if(search(v.name)){
-        //cout << "Already in Graph" << endl; //Print Statement for debugging
         return;
     }
     vertices.push_back(v);
 }
 
-void Graph::displayEdges()
-{
+void Graph::displayEdges() { //Graph Print Function
     for(int i = 0; i < vertices.size(); i++){
         cout<<"[" << vertices[i].name<<"]" << "-->";
         for(int j = 0; j < vertices[i].adj.size(); j++){
@@ -78,7 +71,7 @@ void Graph::displayEdges()
     }
 }
 
-vertex* Graph::search(string v){
+vertex* Graph::search(string v){ //Search for Node
     for(int x = 0; x < vertices.size(); x++){
         if (vertices[x].name == v){
             return &vertices[x];
@@ -88,48 +81,13 @@ vertex* Graph::search(string v){
 }
 
 
-vertex* Graph::BFS(string startVal, string endVal){
-    for(int x = 0; x < vertices.size(); x++){
-        vertices[x].visited = false;
-        vertices[x].distance = 0;
-        vertices[x].parent = NULL;
-    }
-    //search for startVal
-    vertex *v = search(startVal);
-    v->visited = true;
-    v->distance = 0;
-    v->parent = NULL;
-    //add v to a queue
-    queue<vertex*> q;
-    q.push(v);
-    while(!q.empty()){
-        vertex *n = q.front(); //front returns a value
-        q.pop(); //pop removes from queue
-        for(int x = 0; x < n->adj.size(); x++){
-            if(n->adj[x ].v->visited == false){
-                n->adj[x ].v->distance = n->distance + 1; //parent distance + 1
-                n->adj[x ].v->parent = n;
-                //check if it's what we're looking for
-                if(n->adj[x ].v->name == endVal){
-                    return n->adj[x ].v; 
-
-                }else{
-                    n->adj[x ].v->visited = true;
-                    q.push(n->adj[x ].v);
-                }
-            }
-        }
-    }
-    return NULL;
-}
-
 
 int Graph::distanceBetweenWords(std::string word1, std::string word2){
     int result = search(word2)->distance;
     return result;
 }
 
-bool Graph::allVisited(){
+bool Graph::allVisited(){ //Checks if all nodes have been visisted
     for (int i = 0; i < vertices.size(); i++){
         if (vertices[i].visited != true){
             return false;
@@ -138,7 +96,7 @@ bool Graph::allVisited(){
     return true;
 }
 
-vertex* Graph::getMinNode(){
+vertex* Graph::getMinNode(){ 
     int min = INT32_MAX;
     vertex *result;
     for(int i = 0; i < vertices.size(); i++){
@@ -177,9 +135,45 @@ void Graph::assignDistance(string s){
     }
 }
 
-void Graph::unassignDistance(){
+void Graph::unassignDistance(){ //Sets all to univisted, and distance to max
     for(int i = 0; i < vertices.size(); i++){
         vertices[i].visited = false;
         vertices[i].distance = INT32_MAX;
     }
+}
+
+void Graph::BellmanFord(string src){ //Gets distance to all Nodes, checks for negative weight
+    unassignDistance(); //Sets visited to false and distance to max/infinite
+    vertex *source = search(src);
+    source->distance = 0; 
+    //Loop through all edges and check for shrotest path
+    for(int k = 0; k < vertices.size(); k++){
+        for(int i = 0; i < vertices.size(); i++){
+            for(int j = 0; j < vertices[i].adj.size(); j++){
+                if(vertices[i].distance != INT32_MAX && vertices[i].distance + vertices[i].adj[j].weight < vertices[i].adj[j].v->distance) {
+                    vertices[i].adj[j].v->distance = vertices[i].distance + vertices[i].adj[j].weight;
+                }
+            }
+        }
+    }
+
+    //Check for Negative weight
+    for(int i = 0; i < vertices.size() - 1; i++){
+        for(int j = 0; j < vertices[i].adj.size(); j++){
+            if(vertices[i].distance != INT32_MAX && vertices[i].distance + vertices[i].adj[j].weight < vertices[i].adj[j].v->distance) {
+                cout << "Graph contains negative edge weight" << endl;
+                return;
+            }
+        }
+    }
+
+    for(int i = 0; i < vertices.size(); i++){
+        if(vertices[i].distance == 0){
+            continue;
+        }
+        cout << "Distance from " << src << " to " << vertices[i].name << " is " << vertices[i].distance << endl; 
+    }
+
+    unassignDistance();
+
 }

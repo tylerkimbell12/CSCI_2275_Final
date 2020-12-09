@@ -24,11 +24,11 @@ class Graph
         std::vector<vertex> vertices;
         void unassignDistance();
         void addLocationstoQueue(string,string, stack<vertex*>&);
+        void BellmanFord(string);
     protected:
     private:
         //vector<edge> edges;
         vertex* search(std::string v);
-        vertex* BFS(std::string v1, std::string v2);
         bool allVisited();
         vertex* getMinNode();
         

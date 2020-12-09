@@ -17,7 +17,6 @@ int main(int argc, char *argv[]){
     string startLoc = "";
     int distance = 0;
     int speed = 2;
-
 //Beginning of File Input | Vertex file must be first argument, edge file must be second.
     ifstream inStreamVerticies(argv[1]);
     ifstream inStreamEdges(argv[2]);
@@ -50,7 +49,6 @@ int main(int argc, char *argv[]){
         }
     }
     
-    mygwaf.displayEdges();
 //End of File Input
     string startingLocation;
     std::string mainMenu = 
@@ -60,7 +58,9 @@ int main(int argc, char *argv[]){
         "3. Remove Destination\n"
         "4. Follow Shortest Path To Next Destination\n"
         "5. Set Speed\n"
-        "6. Exit\n";
+        "6. Print Graph\n"
+        "7. Print Distance from one node to all others using the Bellman-Ford alogrithm\n"
+        "8. Exit\n";
 
     std::string locationList= 
         "======Avalible Locations=====\n"
@@ -82,9 +82,6 @@ int main(int argc, char *argv[]){
         switch (choice) {
             case 1:
             {
-
-                cin.clear();
-                cin.ignore();
                 string location;
                 cout << "Set current location:\n\n" << locationList << endl;
                 cin >> location;
@@ -103,8 +100,6 @@ int main(int argc, char *argv[]){
             
             case 2:
             {
-                cin.clear();
-                cin.ignore();
                 string location;
                 cout << "Add destination to queue:\n\n" << locationList << endl;
                 getline(cin, location);
@@ -136,11 +131,11 @@ int main(int argc, char *argv[]){
                     mygwaf.unassignDistance();
                     distance = 0.0;
                     string temp;
-                    cout << "Following path from:" << startLoc << " to:" << locVector.back() << endl;
+                    cout << "Following path from: " << startLoc << " to: " << locVector.back() << endl;
                     mygwaf.assignDistance(startLoc);
                     distance = mygwaf.distanceBetweenWords(startLoc,locVector.back());
-                    cout << "Distance to Location:" << distance << endl;
-                    cout << "ETA:" << distance/speed << "sec" << endl;
+                    cout << "Distance to Location: " << distance << endl;
+                    cout << "ETA: " << distance/speed << "sec" << endl;
                     mygwaf.addLocationstoQueue(startLoc, locVector.back(), locationStack);
                     while(!locationStack.empty()){
                         if(locationStack.top()->name == locVector.back()){
@@ -169,6 +164,20 @@ int main(int argc, char *argv[]){
                 break;
             }
             case 6:
+            {
+                mygwaf.displayEdges();
+                break;
+            }
+            case 7:
+            {
+                cout << "Enter Source Node" << endl;
+                cout << locationList << endl;
+                string sourceNode;
+                cin >> sourceNode;
+                mygwaf.BellmanFord(sourceNode);
+                break;
+            }
+            case 8:
             {
                 cout << "Exiting..." << endl;
                 return 0;
