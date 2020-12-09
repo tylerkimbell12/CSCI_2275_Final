@@ -1,28 +1,21 @@
 #include <iostream>
 #include <string>
+#include "Nodes.h"
 using namespace std;
 
-struct Node {
-    string data;
-    Node *prev;
-    Node(string toQ) {
-        data = toQ;
-        prev = NULL;
-    }
-};
 
-class Stack {
+//skeleton for a linked list implementation of a stack
+class LLStack {
     private: 
-        Node *top;
+        LLNode *top;
     public:
-        Stack() {
+        LLStack() {
             top = NULL;
         }
+        // bool isFull();
         bool isEmpty();
-        void push(string val); 
-        Node *peek();        
-        Node *pop();
+        void push(vertex* val); //optional
+        LLNode *peek();        //optional
+        LLNode *pop();
         void printStack();
-        void clearStack();
-
 };

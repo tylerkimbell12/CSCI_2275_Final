@@ -4,6 +4,8 @@
 #include <fstream>
 #include <sstream>
 #include <queue>
+#include <stack>
+
 
 using namespace std;
 
@@ -44,6 +46,15 @@ void Graph::addVertex(string n, double latitude, double longitude){
         v.name = n;
         vertices.push_back(v);
     }
+}
+
+bool Graph::vertexExists(string s){
+    for (int i = 0; i < vertices.size(); i++){
+        if(s == vertices[i].name){
+            return true;
+        }
+    }
+    return false;
 }
 
 void Graph::addVertexObject(vertex v){ //Second addVertex function when we just want to pass a vertex
@@ -114,11 +125,7 @@ vertex* Graph::BFS(string startVal, string endVal){
 
 
 int Graph::distanceBetweenWords(std::string word1, std::string word2){
-    unassignDistance();
-    assignDistance(word1);
     int result = search(word2)->distance;
-    unassignDistance();
-
     return result;
 }
 
@@ -144,6 +151,14 @@ vertex* Graph::getMinNode(){
 
 } 
 
+void Graph::addLocationstoQueue(string s, string d, stack<vertex*>& stack){
+    vertex* des = search(d);
+    while(des->name != s){
+        stack.push(des);
+        des = des->parent;
+    }
+}
+
 //Dikjstras
 void Graph::assignDistance(string s){
     vertex* source = search(s);
@@ -154,9 +169,9 @@ void Graph::assignDistance(string s){
         vertex* minNode = getMinNode();
         minNode->visited = true;
         for(int i = 0; i < minNode->adj.size(); i++){
-            if(minNode->adj[i ].v->distance > minNode->distance + minNode->adj[i ].weight){
-                minNode->adj[i ].v->distance = minNode->distance + minNode->adj[i ].weight;
-                minNode->adj[i ].v->parent = minNode;
+            if(minNode->adj[i].v->distance > minNode->distance + minNode->adj[i].weight){
+                minNode->adj[i].v->distance = minNode->distance + minNode->adj[i].weight;
+                minNode->adj[i].v->parent = minNode;
             }
         }
     }
