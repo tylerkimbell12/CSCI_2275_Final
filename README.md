@@ -12,6 +12,7 @@ Download the zip file from github, and extract the files into VScode.
 Compile with: g++ Graph.cpp Stack.cpp final.cpp Queue.cpp Nodes.h -std=c++11 -o final 
 
 For Windows: Run with: ./final graphVertexes.csv graphdataWindows.csv
+
 For Mac: Run with: ./final graphVertexes.csv graphdataMac.csv
 	
 ----------------------------------------
