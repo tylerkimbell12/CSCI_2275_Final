@@ -2,30 +2,32 @@
 #include <string>
 using namespace std;
 
-void Stack::push(string toPush) {
-    Node* prevNode = NULL;
+
+//linked list stack implementations
+
+void LLStack::push(vertex* toPush) {
+    LLNode* prevNode = NULL;
+    LLNode* newTop = new LLNode(toPush);
     if(top != NULL){
         prevNode = top->prev;
     }
-    top = new Node(toPush);
+    top = newTop;
     top->prev = prevNode;
-
 }
 
-Node* Stack::pop() {
-   Node* topNode = top;
-   Node* prevNode = top->prev;
-    delete top;
+LLNode* LLStack::pop() {
+    LLNode* topNode = top;
+    LLNode* prevNode = top->prev;
     top = prevNode;
     return topNode;
 }
 
-Node*Stack::peek() {
+LLNode* LLStack::peek() {
     return top;
 }
 
-void Stack::printStack() {
-   Node *crawler = top;
+void LLStack::printStack() {
+    LLNode *crawler = top;
     cout << "\ntop" << endl;
     while (crawler != NULL) {
         cout << crawler->data << " | ";
@@ -34,12 +36,6 @@ void Stack::printStack() {
     cout << endl;
 }
 
-void Stack::clearStack(){
-    while(!isEmpty()){
-        pop();
-    }
-}
-
-bool Stack::isEmpty() {
+bool LLStack::isEmpty() {
     return top == NULL;
 }
