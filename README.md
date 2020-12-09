@@ -5,7 +5,7 @@ Our plan is to use a graph to model the CU campus, making notible locations node
 
 ----------------------------------------
 
-# How to Run:
+**How to Run:**
 
 Download the zip file from github, and extract the files into VScode.
 
@@ -15,22 +15,22 @@ Run with: ./final graphVertexes.csv graphdata.csv
 	
 ----------------------------------------
   
-# Dependencies:
+**Dependencies:**
 
 No third party libraries are required,  only the mingw compiler. 
   
 ----------------------------------------
-# System Requirements: 
+**System Requirements:**
 
 Tested on both macOS and Windows, althgouh some modification is needed to run on specific platforms, see known bugs. 
 
 ----------------------------------------
-# Team Members:
+**Team Members:**
 
 Marc Roy, Tyler Kimbell
 
 ----------------------------------------
-# Known Bugs:
+**Known Bugs:**
 
   #For MAC users, for the program to build properly, there must not be a comma at the end of line 19 in graphdata.csv after the 110.
   
