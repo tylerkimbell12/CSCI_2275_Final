@@ -11,7 +11,8 @@ Download the zip file from github, and extract the files into VScode.
 
 Compile with: g++ Graph.cpp Stack.cpp final.cpp Queue.cpp Nodes.h -std=c++11 -o final 
 
-Run with: ./final graphVertexes.csv graphdata.csv
+For Windows: Run with: ./final graphVertexes.csv graphdataWindows.csv
+For Mac: Run with: ./final graphVertexes.csv graphdataMac.csv
 	
 ----------------------------------------
   
@@ -32,7 +33,4 @@ Marc Roy, Tyler Kimbell
 ----------------------------------------
 **Known Bugs:**
 
-  #For MAC users, for the program to build properly, there must not be a comma at the end of line 19 in graphdata.csv after the 110.
-  
-  #For Windows users, for the program to build properly, there must be a comma at the end of line 19 in graphdata.csv after the 110.
 
