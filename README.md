@@ -24,7 +24,7 @@ No third party libraries are required,  only the mingw compiler.
 ----------------------------------------
 **System Requirements:**
 
-Tested on both macOS and Windows, althgouh some modification is needed to run on specific platforms, see known bugs. 
+Tested on both macOS and Windows
 
 ----------------------------------------
 **Team Members:**
