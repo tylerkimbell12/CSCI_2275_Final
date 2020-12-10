@@ -13,11 +13,11 @@ Compile with: g++ -std=c++11 final.cpp Queue.cpp Stack.cpp Graph.cpp -o final
 
 Try Running with:
 
-For Mac: Run with: ./final graphVertexes.csv graphdataMac.txt
+./final graphVertexes.csv graphdataMac.txt
 
 If that doesnt work... Run with this:
 
-For Windows: Run with: ./final graphVertexes.csv graphdataWindows.csv
+./final graphVertexes.csv graphdataWindows.csv
 
 The program will create a graph of CU Boulder, however in order to select optoin 4 in the menu, 
 a current location and destination must be set
