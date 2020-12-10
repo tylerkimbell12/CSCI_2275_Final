@@ -19,6 +19,9 @@ If that doesnt work... Run with this:
 
 For Windows: Run with: ./final graphVertexes.csv graphdataWindows.csv
 
+The program will create a graph of CU Boulder, however in order to select optoin 4 in the menu, 
+a current location and destination must be set
+
 	
 ----------------------------------------
   
