@@ -9,11 +9,16 @@ Our plan is to use a graph to model the CU campus, making notible locations node
 
 Download the zip file from github, and extract the files into VScode.
 
-Compile with: g++ Graph.cpp Stack.cpp final.cpp Queue.cpp Nodes.h -std=c++11 -o final 
+Compile with: g++ -std=c++11 final.cpp Queue.cpp Stack.cpp Graph.cpp -o final
+
+Try Running with:
+
+For Mac: Run with: ./final graphVertexes.csv graphdataMac.txt
+
+If that doesnt work... Run with this:
 
 For Windows: Run with: ./final graphVertexes.csv graphdataWindows.csv
 
-For Mac: Run with: ./final graphVertexes.csv graphdataMac.txt
 	
 ----------------------------------------
   
@@ -34,4 +39,6 @@ Marc Roy, Tyler Kimbell
 ----------------------------------------
 **Known Bugs:**
 
+There is a comma at the end of line 19 in the graphdataWindows.csv that if either added or removed, 
+causes the program to seg fault. We beleive it is an error with regex.
 
